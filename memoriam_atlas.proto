@@ -1,0 +1,25 @@
+syntax = "proto3";
+package memoriam_atlas;
+
+service MemoriamAtlas {
+    // Returns the status of the Memoriam atlas service
+    rpc GetStatus (Empty) returns (AtlasStatus);
+
+    rpc ListFiles (Empty) returns (FileList);
+
+    rpc GitClone (CloneRequest) returns (AtlasStatus);
+}
+
+message Empty {}
+
+message CloneRequest {
+    string git_url = 1;
+}
+
+message AtlasStatus {
+    optional string git_url = 1;
+}
+
+message FileList {
+    repeated string file_names = 1;
+}
